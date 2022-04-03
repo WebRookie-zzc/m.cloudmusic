@@ -114,7 +114,7 @@ export default {
     startBannerTimer() {
       this.bannerData.bannerTimer = setInterval(async () => {
         this.bannerData.currentIndex += 1;
-        console.log(this.bannerData.currentIndex);
+        // console.log(this.bannerData.currentIndex);
         this.bannerData.innerWrapperLeftValue = -95*this.bannerData.currentIndex
         if(this.bannerData.currentIndex === this.bannerList.length + 1) {
           //延时过动画跳过的时间
