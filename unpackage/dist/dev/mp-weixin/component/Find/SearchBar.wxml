@@ -1,0 +1,1 @@
+<view class="search_bar _div"><view class="left_menu _div"></view><view class="input_search_wrapper _div"><view class="left_search_img _div"></view><input type="text" placeholder="搜索"/></view><view class="mic _div"></view></view>

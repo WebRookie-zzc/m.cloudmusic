@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "search-bar": "/component/Find/SearchBar",
+    "banner": "/component/Find/Banner"
+  }
+}

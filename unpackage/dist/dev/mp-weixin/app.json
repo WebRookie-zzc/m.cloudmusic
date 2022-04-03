@@ -1,0 +1,32 @@
+{
+  "pages": [
+    "pages/find/find",
+    "pages/index/index"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "网易云音乐",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#d43c33",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/find/find",
+        "iconPath": "static/tabbar/find.png",
+        "selectedIconPath": "static/tabbar/find_red.png",
+        "text": "发现"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "暂时"
+      }
+    ]
+  },
+  "usingComponents": {}
+}
