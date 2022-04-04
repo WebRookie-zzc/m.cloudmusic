@@ -7,10 +7,15 @@
     <ul class="playlist_item_wrapper">
 <!--      滚动显示的歌单-->
       <li class="playlist_scroll_wrapper">
-        <ul class="playlist_scroll_inner_wrapper">
+        <ul class="playlist_scroll_inner_wrapper"
+            :style="{top: `-${playlistBanner.currentIndex * 30}vw`, transition: playlistBanner.transitionValue}">
           <li class="scroll_playlist_item" v-for="scrollItem in scrollPlaylistList">
             <img :src="scrollItem.picUrl" alt="">
             <div class="playlist_title">{{scrollItem.name}}</div>
+          </li>
+          <li class="scroll_playlist_item">
+            <img :src="scrollPlaylistList[0].picUrl ? scrollPlaylistList[0].picUrl : ''" alt="">
+            <div class="playlist_title">{{scrollPlaylistList[0].picUrl ? scrollPlaylistList[0].name : ''}}</div>
           </li>
         </ul>
       </li>
@@ -34,7 +39,14 @@ export default {
       // 前面用于滚动的歌单的数据
       scrollPlaylistList: [],
       // 用于静态显示的歌单数据
-      staticPlaylistList: []
+      staticPlaylistList: [],
+      // 歌单轮播图
+      playlistBanner: {
+        // 当前所处于的索引值
+        currentIndex: 0,
+        // transition 值
+        transitionValue: '.5s'
+      }
     }
   },
   methods: {
@@ -63,11 +75,31 @@ export default {
     playCounter(originData) {
       // 换为以万为单位
       return `${parseInt((Number(originData) / 1000).toString())}万`
+    },
+    /**
+     * 轮播歌单
+     * */
+    startPlaylistBanner() {
+      setInterval(() => {
+        this.playlistBanner.currentIndex += 1;
+        if(this.playlistBanner.currentIndex === 5) {
+          setTimeout(() => {
+            this.playlistBanner.transitionValue = `none`
+            this.playlistBanner.currentIndex = 0;
+            setTimeout(() => {
+              this.playlistBanner.transitionValue = `.5s`
+            }, 100)
+          }, 500)
+        }
+      }, 3000)
     }
   },
 
   async beforeMount () {
     await this.getRecommendPlaylistData()
+  },
+  mounted() {
+    this.startPlaylistBanner()
   }
 }
 </script>
@@ -114,13 +146,51 @@ export default {
       flex-wrap: nowrap;
       width: 100vw;
       overflow-x: scroll;
+      overflow-y: hidden;
 
+      // 滚动显示图片
       .playlist_scroll_wrapper {
         width: 25vw;
-        height: 20vw;
-        list-style: none;
+        height: 30vw;
+        margin-left: 3vw;
+
+
+        .playlist_scroll_inner_wrapper {
+          list-style: none;
+          padding-left: 0;
+          width: 25vw;
+          height: 30vw;
+          //overflow: hidden;
+          position: relative;
+          top: 0;
+          transition: .5s;
+
+          .scroll_playlist_item {
+            width: 25vw;
+            height: 30vw;
+
+            img {
+              width: 25vw;
+              height: 25vw;
+              border-radius: 5vw;
+            }
+
+            .playlist_title {
+              margin-top: 1vw;
+              width: 23vw;
+              font-size: 2.5vw;
+              padding-left: 1vw;
+              padding-rignt: 1vw;
+              font-weight: bolder;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              overflow: hidden;
+            }
+          }
+        }
       }
 
+      // 静态显示的歌单列表
       .playlist_item {
         width: 25vw;
         height: 30vw;
@@ -158,6 +228,8 @@ export default {
           background-size: 3vw 3vw;
           border-radius: 3vw;
           text-align: center;
+          font-size: 2.5vw;
+          line-height: 5vw;
         }
       }
     }

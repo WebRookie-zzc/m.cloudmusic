@@ -220,6 +220,7 @@ export default {
       flex-direction: row;
       padding: 0 2.5vw;
       position: relative;
+      //overflow: hidden;
       //left: -90vw;
       //transition: .5s;
 

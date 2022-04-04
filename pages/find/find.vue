@@ -4,6 +4,7 @@
     <Banner/>
     <RecommendBar/>
     <RecommendPlaylist/>
+    <newSongs/>
   </view>
 </template>
 
@@ -12,6 +13,7 @@
   import Banner from '../../component/Find/Banner'
   import RecommendBar from '../../component/Find/RecommendBar'
   import RecommendPlaylist from "../../component/Find/RecommendPlaylist";
+  import newSongs from "../../component/Find/newSongs";
 
   export default {
     data() {
@@ -26,7 +28,8 @@
       SearchBar,
       Banner,
       RecommendBar,
-      RecommendPlaylist
+      RecommendPlaylist,
+      newSongs
     },
 
     onLoad() {
