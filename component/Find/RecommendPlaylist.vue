@@ -14,8 +14,8 @@
             <div class="playlist_title">{{scrollItem.name}}</div>
           </li>
           <li class="scroll_playlist_item">
-            <img :src="scrollPlaylistList[0].picUrl ? scrollPlaylistList[0].picUrl : ''" alt="">
-            <div class="playlist_title">{{scrollPlaylistList[0].picUrl ? scrollPlaylistList[0].name : ''}}</div>
+            <img :src="scrollPlaylistList[0] ? scrollPlaylistList[0].picUrl : ''" alt="">
+            <div class="playlist_title">{{scrollPlaylistList[0] ? scrollPlaylistList[0].name : ''}}</div>
           </li>
         </ul>
       </li>
